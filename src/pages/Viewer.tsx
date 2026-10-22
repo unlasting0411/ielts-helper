@@ -8,7 +8,7 @@ import { isAudio, isPdf } from '../lib/tagger';
 import { fmtClock } from '../lib/timer';
 import { timer, useTimer } from '../timerStore';
 import type { FileMeta } from '../types';
-import { Icon, Modal, go, useStore } from '../ui';
+import { Icon, Modal, go, goHome, useStore } from '../ui';
 
 // 阅读器：PDF（可上下分屏看第二个 PDF）+ 底部音频控制条 + 悬浮计时器
 export function Viewer({ query }: { query: URLSearchParams }) {
@@ -49,7 +49,7 @@ export function Viewer({ query }: { query: URLSearchParams }) {
   return (
     <div class="viewer">
       <div class="viewer-top">
-        <button class="iconbtn" aria-label="返回" onClick={() => (history.length > 1 ? history.back() : go('/library'))}><Icon name="back" /></button>
+        <button class="iconbtn" aria-label="返回" onClick={goHome}><Icon name="back" /></button>
         <div class="title ellipsis">{title || '阅读器'}</div>
         <button class="iconbtn" aria-label="计时器" onClick={() => setTimerOpen(true)}><Icon name="timer" /></button>
         {pdf && (

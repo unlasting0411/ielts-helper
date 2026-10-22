@@ -3,13 +3,41 @@ import { useEffect, useState } from 'preact/hooks';
 import { getAll, getSettings, onChange, type StoreName } from './db';
 import type { Settings } from './types';
 
-// ---------- 路由（hash，安卓返回键可用）----------
+// ---------- 路由（hash）----------
+// 历史记录最多两层：底层永远是“今日”（主界面），其他页面都是它的子页面，只占一层。
+// 所以手机返回键在任何子页面都回到今日，在今日再按返回则退出 App。
 export type Route = { path: string; query: URLSearchParams };
 
+export const HOME = '/today';
+
 function parseHash(): Route {
-  const h = location.hash.replace(/^#/, '') || '/today';
+  const h = location.hash.replace(/^#/, '') || HOME;
   const [path, qs] = h.split('?');
   return { path, query: new URLSearchParams(qs ?? '') };
+}
+
+const isHome = (path: string) => path === HOME || path === '/' || path === '';
+const onSubEntry = () => (history.state as { sub?: boolean } | null)?.sub === true;
+const emitRoute = () => dispatchEvent(new Event('routechange'));
+
+// 回到今日后要套用的参数（例如 ?day=3）；在 popstate 后用 replaceState 写入
+let pendingHome: string | null = null;
+
+addEventListener('popstate', () => {
+  if (pendingHome != null && !onSubEntry()) {
+    history.replaceState({ home: true }, '', pendingHome);
+    pendingHome = null;
+  }
+  emitRoute();
+});
+
+// 启动时整理历史：直接打开子页面（刷新、深链接）时在下面垫一层今日
+export function initHistory() {
+  const { path } = parseHash();
+  if (isHome(path) || onSubEntry()) return;
+  const sub = location.hash;
+  history.replaceState({ home: true }, '', `#${HOME}`);
+  history.pushState({ sub: true }, '', sub);
 }
 
 export function useRoute(): Route {
@@ -17,7 +45,11 @@ export function useRoute(): Route {
   useEffect(() => {
     const fn = () => setR(parseHash());
     addEventListener('hashchange', fn);
-    return () => removeEventListener('hashchange', fn);
+    addEventListener('routechange', fn);
+    return () => {
+      removeEventListener('hashchange', fn);
+      removeEventListener('routechange', fn);
+    };
   }, []);
   return r;
 }
@@ -26,7 +58,26 @@ export function go(path: string, query?: Record<string, string | number | undefi
   const q = new URLSearchParams();
   if (query) for (const [k, v] of Object.entries(query)) if (v !== undefined && v !== '') q.set(k, String(v));
   const s = q.toString();
-  location.hash = s ? `${path}?${s}` : path;
+  const url = `#${s ? `${path}?${s}` : path}`;
+  if (isHome(path)) {
+    if (onSubEntry()) {
+      // 从子页面回主界面：退回底层那条记录，而不是再压一层
+      pendingHome = url;
+      history.back();
+      return;
+    }
+    history.replaceState({ home: true }, '', url);
+  } else if (onSubEntry()) {
+    history.replaceState({ sub: true }, '', url); // 子页面之间切换：替换，不加层
+  } else {
+    history.pushState({ sub: true }, '', url);
+  }
+  emitRoute();
+}
+
+// 返回主界面（顶部返回按钮用）
+export function goHome() {
+  go(HOME);
 }
 
 // ---------- 数据 hooks ----------

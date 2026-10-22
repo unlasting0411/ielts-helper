@@ -6,7 +6,7 @@ import { TimerPage } from './pages/Timer';
 import { Today } from './pages/Today';
 import { timer, useTimer } from './timerStore';
 import { useEffect, useState } from 'preact/hooks';
-import { Icon, Modal, Toasts, go, useRoute } from './ui';
+import { Icon, Modal, Toasts, go, goHome, useRoute } from './ui';
 
 // 阅读器含 pdf.js，按需加载（Service Worker 仍会预缓存，离线可用）
 type ViewerType = typeof import('./pages/Viewer').Viewer;
@@ -65,7 +65,7 @@ export function App() {
     <div class="app">
       <header class="topbar">
         {route.path === '/settings' && (
-          <button class="iconbtn" aria-label="返回" onClick={() => history.back()}><Icon name="back" /></button>
+          <button class="iconbtn" aria-label="返回" onClick={goHome}><Icon name="back" /></button>
         )}
         <h1>{TITLES[route.path] ?? '今日'}</h1>
         {route.path !== '/settings' && (
@@ -76,7 +76,13 @@ export function App() {
       <nav class="bottomnav" aria-label="主导航">
         <div class="inner">
           {NAV.map((n) => (
-            <a href={`#${n.path}`} class={route.path === n.path || (n.path === '/today' && !TITLES[route.path]) ? 'active' : ''}>
+            <a
+              href={`#${n.path}`}
+              onClick={(e) => {
+                e.preventDefault();
+                go(n.path);
+              }}
+              class={route.path === n.path || (n.path === '/today' && !TITLES[route.path]) ? 'active' : ''}>
               <Icon name={n.icon} />
               {n.label}
             </a>

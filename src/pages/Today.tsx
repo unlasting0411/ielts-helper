@@ -113,7 +113,7 @@ function DayNav({ day, current, startDate }: { day: number; current: number; sta
           {inPlan(day) && day !== current && (
             <>
               {' · '}
-              <a href="#/today">回到今天</a>
+              <a href="#/today" onClick={(e) => { e.preventDefault(); go('/today'); }}>回到今天</a>
             </>
           )}
         </div>

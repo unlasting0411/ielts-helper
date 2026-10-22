@@ -22,9 +22,14 @@ export function Library() {
   const [editing, setEditing] = useState<FileMeta | null>(null);
   const [est, setEst] = useState<StorageEstimate | null>(null);
 
+  const [persisted, setPersisted] = useState<boolean | null>(null);
+
   useEffect(() => {
     navigator.storage?.estimate?.().then(setEst).catch(() => {});
   }, [files]);
+  useEffect(() => {
+    navigator.storage?.persisted?.().then(setPersisted).catch(() => setPersisted(null));
+  }, []);
 
   if (!files) return <div class="empty">加载中…</div>;
   const total = files.reduce((a, f) => a + f.size, 0);
@@ -48,6 +53,21 @@ export function Library() {
           }}
         />
       </label>
+      {persisted === false && files.length > 0 && (
+        <div class="banner warn row">
+          <span class="grow">浏览器还没同意长期保存，空间紧张时可能清理导入的文件。</span>
+          <button
+            class="btn small"
+            onClick={async () => {
+              const ok = await navigator.storage.persist().catch(() => false);
+              setPersisted(ok);
+              toast(ok ? '已开启长期保存' : '浏览器暂未同意。先“添加到主屏幕”并多用几次，之后再点通常会成功。', undefined, 6000);
+            }}
+          >
+            申请
+          </button>
+        </div>
+      )}
       <div class="small muted row between">
         <span>{files.length} 个文件 · 共 {fmtBytes(total)}</span>
         <span>{est?.quota != null && est.usage != null ? `浏览器剩余 ${fmtBytes(est.quota - est.usage)}` : ''}</span>
