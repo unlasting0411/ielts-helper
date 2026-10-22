@@ -1,0 +1,1143 @@
+[
+ {
+  "day": 1,
+  "week": 1,
+  "type": "mock",
+  "notes": "摸底：四科分数填进分数页；口语录音转文字发给 Claude 评估；对照检查点决定是否调整目标。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "摸底：剑19 Test 1 听力整套",
+    "ref": {
+     "book": 19,
+     "test": 1,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "摸底：剑19 Test 1 阅读整套",
+    "ref": {
+     "book": 19,
+     "test": 1,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "摸底：剑19 Test 1 Task 1 + Task 2",
+    "ref": {
+     "book": 19,
+     "test": 1,
+     "skill": "writing"
+    },
+    "timer": "writing60"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "摸底：录 Part 1 三题 + Part 2 一题 + Part 3 两题",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 2,
+  "week": 1,
+  "type": "practice",
+  "notes": "第 1 周听力：选错最多的 Section 整段逐句听写，每句最多听 3 遍。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑15 Test 1 Section 1–2 + 精听",
+    "ref": {
+     "book": 15,
+     "test": 1,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑15 Test 1 Passage 1–2（每篇 20 分钟）+ 复盘",
+    "ref": {
+     "book": 15,
+     "test": 1,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "读 2 篇 Task 2 范文拆结构；Task 1 线图一篇（从剑15–18 任选该类型题）",
+    "timer": "writingT1"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "当季 Part 1 话题 5 个，每题 3–4 句"
+   }
+  ]
+ },
+ {
+  "day": 3,
+  "week": 1,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑15 Test 1 Section 3–4 + 精听",
+    "ref": {
+     "book": 15,
+     "test": 1,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑15 Test 1 Passage 3 + Test 2 Passage 1",
+    "ref": {
+     "book": 15,
+     "test": 1,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "剑15 Test 1 Task 2（40 分钟）+ Task 1 柱状图一篇",
+    "ref": {
+     "book": 15,
+     "test": 1,
+     "skill": "writing"
+    },
+    "timer": "writingT2"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 1 话题 5 个"
+   }
+  ]
+ },
+ {
+  "day": 4,
+  "week": 1,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑15 Test 2 Section 1–2 + 精听",
+    "ref": {
+     "book": 15,
+     "test": 2,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑15 Test 2 Passage 2–3",
+    "ref": {
+     "book": 15,
+     "test": 2,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写第 3 天大作文 + Task 1 饼图一篇",
+    "timer": "writingT1"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 1 话题 5 个 + Part 2 一题 + Part 3 两题",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 5,
+  "week": 1,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑15 Test 2 Section 3–4 + 精听",
+    "ref": {
+     "book": 15,
+     "test": 2,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑15 Test 3 Passage 1–2",
+    "ref": {
+     "book": 15,
+     "test": 3,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "剑15 Test 2 Task 2 + Task 1 表格一篇",
+    "ref": {
+     "book": 15,
+     "test": 2,
+     "skill": "writing"
+    },
+    "timer": "writingT2"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 1 话题 5 个 + Part 2 一题 + Part 3 两题",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 6,
+  "week": 1,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑15 Test 3 Section 1–2 + 精听",
+    "ref": {
+     "book": 15,
+     "test": 3,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑15 Test 3 Passage 3 + Test 4 Passage 1",
+    "ref": {
+     "book": 15,
+     "test": 3,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写第 5 天大作文 + Task 1 地图一篇",
+    "timer": "writingT1"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 两题 + Part 3（和 Claude 做追问练习）",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 7,
+  "week": 1,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑15 Test 3 Section 3–4 + 精听",
+    "ref": {
+     "book": 15,
+     "test": 3,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑15 Test 4 Passage 2–3",
+    "ref": {
+     "book": 15,
+     "test": 4,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "剑15 Test 3 Task 2 + Task 1 流程图一篇",
+    "ref": {
+     "book": 15,
+     "test": 3,
+     "skill": "writing"
+    },
+    "timer": "writingT2"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 两题 + Part 3 追问练习",
+    "timer": "speakingP2"
+   },
+   {
+    "key": "X",
+    "skill": "review",
+    "text": "错因专项 1 小时：本周最多的错因"
+   }
+  ]
+ },
+ {
+  "day": 8,
+  "week": 2,
+  "type": "practice",
+  "notes": "第 2 周起听力只精听错题句和答案句，其余看原文跟读，精听不超过 30 分钟。口语 Part 2 和 Part 3 各 30 分钟。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑16 Test 1 听力整套 + 靶向精听",
+    "ref": {
+     "book": 16,
+     "test": 1,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑16 Test 1 阅读整套 + 复盘",
+    "ref": {
+     "book": 16,
+     "test": 1,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写第 7 天大作文 + 剑16 Test 1 Task 2",
+    "ref": {
+     "book": 16,
+     "test": 1,
+     "skill": "writing"
+    },
+    "timer": "writingT2"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 9,
+  "week": 2,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑16 Test 2 听力整套 + 靶向精听",
+    "ref": {
+     "book": 16,
+     "test": 2,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑16 Test 2 阅读整套 + 复盘",
+    "ref": {
+     "book": 16,
+     "test": 2,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写 + 剑16 Test 2 Task 2 + Task 1",
+    "ref": {
+     "book": 16,
+     "test": 2,
+     "skill": "writing"
+    },
+    "timer": "writing60"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 10,
+  "week": 2,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑16 Test 3 听力整套 + 靶向精听",
+    "ref": {
+     "book": 16,
+     "test": 3,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑16 Test 3 阅读整套 + 复盘",
+    "ref": {
+     "book": 16,
+     "test": 3,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写 + 剑16 Test 3 Task 2",
+    "ref": {
+     "book": 16,
+     "test": 3,
+     "skill": "writing"
+    },
+    "timer": "writingT2"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 11,
+  "week": 2,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑16 Test 4 听力整套 + 靶向精听",
+    "ref": {
+     "book": 16,
+     "test": 4,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑16 Test 4 阅读整套 + 复盘",
+    "ref": {
+     "book": 16,
+     "test": 4,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写 + 剑16 Test 4 Task 2 + Task 1",
+    "ref": {
+     "book": 16,
+     "test": 4,
+     "skill": "writing"
+    },
+    "timer": "writing60"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 12,
+  "week": 2,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑17 Test 1 听力整套 + 靶向精听",
+    "ref": {
+     "book": 17,
+     "test": 1,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑17 Test 1 阅读整套 + 复盘",
+    "ref": {
+     "book": 17,
+     "test": 1,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写 + 剑17 Test 1 Task 2",
+    "ref": {
+     "book": 17,
+     "test": 1,
+     "skill": "writing"
+    },
+    "timer": "writingT2"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 13,
+  "week": 2,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑17 Test 2 听力整套 + 靶向精听",
+    "ref": {
+     "book": 17,
+     "test": 2,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑17 Test 2 阅读整套 + 复盘",
+    "ref": {
+     "book": 17,
+     "test": 2,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写 + 剑17 Test 2 Task 2 + Task 1",
+    "ref": {
+     "book": 17,
+     "test": 2,
+     "skill": "writing"
+    },
+    "timer": "writing60"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "整理 8–10 个万能故事，检查每个能否覆盖 4–5 道题"
+   }
+  ]
+ },
+ {
+  "day": 14,
+  "week": 2,
+  "type": "mock",
+  "notes": "第二次检查点：听力或阅读低于 30/40 时考虑推迟考试。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑17 Test 3 听力",
+    "ref": {
+     "book": 17,
+     "test": 3,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑17 Test 3 阅读",
+    "ref": {
+     "book": 17,
+     "test": 3,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑17 Test 3 Task 1 + Task 2",
+    "ref": {
+     "book": 17,
+     "test": 3,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "完整录一遍 Part 1–3"
+   },
+   {
+    "key": "X",
+    "skill": "review",
+    "text": "错因专项 1 小时：本周最多的错因"
+   }
+  ]
+ },
+ {
+  "day": 15,
+  "week": 3,
+  "type": "mock",
+  "notes": "考机考的话，第 3 周起模考在电脑上做。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑18 Test 1 听力",
+    "ref": {
+     "book": 18,
+     "test": 1,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑18 Test 1 阅读",
+    "ref": {
+     "book": 18,
+     "test": 1,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑18 Test 1 写作",
+    "ref": {
+     "book": 18,
+     "test": 1,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 16,
+  "week": 3,
+  "type": "review",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "复盘：靶向精听第 15 天错题句",
+    "ref": {
+     "book": 18,
+     "test": 1,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "复盘：第 15 天阅读错题逐题找原文",
+    "ref": {
+     "book": 18,
+     "test": 1,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写第 15 天两篇作文"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3 追问练习",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 17,
+  "week": 3,
+  "type": "mock",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑18 Test 2 听力",
+    "ref": {
+     "book": 18,
+     "test": 2,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑18 Test 2 阅读",
+    "ref": {
+     "book": 18,
+     "test": 2,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑18 Test 2 写作",
+    "ref": {
+     "book": 18,
+     "test": 2,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 18,
+  "week": 3,
+  "type": "review",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "复盘：靶向精听第 17 天错题句",
+    "ref": {
+     "book": 18,
+     "test": 2,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "复盘：第 17 天阅读错题逐题找原文",
+    "ref": {
+     "book": 18,
+     "test": 2,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写第 17 天两篇作文"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3 追问练习",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 19,
+  "week": 3,
+  "type": "mock",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑18 Test 3 听力",
+    "ref": {
+     "book": 18,
+     "test": 3,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑18 Test 3 阅读",
+    "ref": {
+     "book": 18,
+     "test": 3,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑18 Test 3 写作",
+    "ref": {
+     "book": 18,
+     "test": 3,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 20,
+  "week": 3,
+  "type": "review",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "复盘：靶向精听第 19 天错题句",
+    "ref": {
+     "book": 18,
+     "test": 3,
+     "skill": "listening"
+    }
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "复盘：第 19 天阅读错题 + 从头翻一遍错题本和词对本",
+    "ref": {
+     "book": 18,
+     "test": 3,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "重写第 19 天两篇作文"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3 追问练习",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 21,
+  "week": 3,
+  "type": "practice",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "剑18 Test 4 听力整套",
+    "ref": {
+     "book": 18,
+     "test": 4,
+     "skill": "listening"
+    },
+    "timer": "listening30"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "剑18 Test 4 阅读整套",
+    "ref": {
+     "book": 18,
+     "test": 4,
+     "skill": "reading"
+    },
+    "timer": "reading60"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "找真人做一次完整口语模拟（Part 1–3，约 14 分钟）"
+   },
+   {
+    "key": "X",
+    "skill": "review",
+    "text": "错因专项 1 小时：本周最多的错因"
+   }
+  ]
+ },
+ {
+  "day": 22,
+  "week": 4,
+  "type": "mock",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑20 Test 1 听力",
+    "ref": {
+     "book": 20,
+     "test": 1,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑20 Test 1 阅读",
+    "ref": {
+     "book": 20,
+     "test": 1,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑20 Test 1 写作",
+    "ref": {
+     "book": 20,
+     "test": 1,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 23,
+  "week": 4,
+  "type": "mock",
+  "notes": "考机考的话，今天改用 British Council IELTS Ready 做一次机考模拟。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑20 Test 2 听力",
+    "ref": {
+     "book": 20,
+     "test": 2,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑20 Test 2 阅读",
+    "ref": {
+     "book": 20,
+     "test": 2,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑20 Test 2 写作",
+    "ref": {
+     "book": 20,
+     "test": 2,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 24,
+  "week": 4,
+  "type": "mock",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑20 Test 3 听力",
+    "ref": {
+     "book": 20,
+     "test": 3,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑20 Test 3 阅读",
+    "ref": {
+     "book": 20,
+     "test": 3,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑20 Test 3 写作",
+    "ref": {
+     "book": 20,
+     "test": 3,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "Part 2 三题 + Part 3",
+    "timer": "speakingP2"
+   }
+  ]
+ },
+ {
+  "day": 25,
+  "week": 4,
+  "type": "mock",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "模考：剑20 Test 4 听力",
+    "ref": {
+     "book": 20,
+     "test": 4,
+     "skill": "listening"
+    },
+    "timer": "mockFull"
+   },
+   {
+    "key": "R",
+    "skill": "reading",
+    "text": "模考：剑20 Test 4 阅读",
+    "ref": {
+     "book": 20,
+     "test": 4,
+     "skill": "reading"
+    }
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "模考：剑20 Test 4 写作",
+    "ref": {
+     "book": 20,
+     "test": 4,
+     "skill": "writing"
+    }
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "再找真人做一次完整口语模拟"
+   }
+  ]
+ },
+ {
+  "day": 26,
+  "week": 4,
+  "type": "taper",
+  "notes": "不做新题。",
+  "tasks": [
+   {
+    "key": "X",
+    "skill": "review",
+    "text": "翻错题本、词对本、王陆错词"
+   },
+   {
+    "key": "W",
+    "skill": "writing",
+    "text": "把重写过的作文读一遍"
+   },
+   {
+    "key": "S",
+    "skill": "speaking",
+    "text": "万能故事要点过一遍"
+   }
+  ]
+ },
+ {
+  "day": 27,
+  "week": 4,
+  "type": "taper",
+  "notes": "晚上确认考场地址、交通路线，准备好护照。",
+  "tasks": [
+   {
+    "key": "X",
+    "skill": "review",
+    "text": "同第 26 天，量减半"
+   }
+  ]
+ },
+ {
+  "day": 28,
+  "week": 4,
+  "type": "taper",
+  "notes": "考前一天或考试日：早睡。",
+  "tasks": [
+   {
+    "key": "L",
+    "skill": "listening",
+    "text": "只听 1 个 Section 找感觉（用剑19 备用题）",
+    "ref": {
+     "book": 19,
+     "test": 2,
+     "skill": "listening"
+    }
+   }
+  ]
+ }
+]
