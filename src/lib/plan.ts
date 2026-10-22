@@ -40,8 +40,13 @@ export function getDayPlan(day: number): DayPlan | undefined {
 export type DisplayTask = Task & { note3h?: string };
 export type DisplayDay = DayPlan & { tasks: DisplayTask[]; isMock: boolean };
 
-// 生成今日页显示的任务：追加单词卡片，3 小时版按规则改写
-export function displayDay(day: number, dailyHours: Settings['dailyHours']): DisplayDay | undefined {
+// 生成今日页显示的任务：追加单词卡片，3 小时版按规则改写。
+// wsPick：3 小时版当天练写作还是口语（默认单数天写作、双数天口语；开启按分数调整时由 adaptive.ts 决定）
+export function displayDay(
+  day: number,
+  dailyHours: Settings['dailyHours'],
+  wsPick: (day: number) => 'writing' | 'speaking' = (d) => (d % 2 === 1 ? 'writing' : 'speaking'),
+): DisplayDay | undefined {
   const base = getDayPlan(day);
   if (!base) return undefined;
   let tasks: DisplayTask[] = base.tasks.map((t) => ({ ...t }));
@@ -58,8 +63,8 @@ export function displayDay(day: number, dailyHours: Settings['dailyHours']): Dis
       const practiceLike = base.type === 'practice' || base.type === 'mock';
       tasks = tasks
         .filter((t) => {
-          if (t.skill === 'writing') return day % 2 === 1;
-          if (t.skill === 'speaking') return day % 2 === 0;
+          if (t.skill === 'writing') return wsPick(day) === 'writing';
+          if (t.skill === 'speaking') return wsPick(day) === 'speaking';
           return true;
         })
         .map((t) => {

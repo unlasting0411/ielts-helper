@@ -2,7 +2,8 @@ import { Library } from './pages/Library';
 import { Notes } from './pages/Notes';
 import { Scores } from './pages/Scores';
 import { SettingsPage } from './pages/Settings';
-import { TimerPage } from './pages/Timer';
+import { Practice } from './pages/Practice';
+import { SheetPage } from './pages/SheetPage';
 import { Today } from './pages/Today';
 import { timer, useTimer } from './timerStore';
 import { useEffect, useState } from 'preact/hooks';
@@ -22,7 +23,7 @@ function LazyViewer({ query }: { query: URLSearchParams }) {
 const NAV = [
   { path: '/today', label: '今日', icon: 'today' },
   { path: '/library', label: '资料', icon: 'library' },
-  { path: '/timer', label: '计时', icon: 'timer' },
+  { path: '/timer', label: '练习', icon: 'timer' },
   { path: '/scores', label: '分数', icon: 'scores' },
   { path: '/notes', label: '笔记', icon: 'notes' },
 ];
@@ -30,7 +31,8 @@ const NAV = [
 const TITLES: Record<string, string> = {
   '/today': '今日',
   '/library': '资料库',
-  '/timer': '计时',
+  '/timer': '练习',
+  '/sheet': '答题卡',
   '/scores': '分数',
   '/notes': '笔记',
   '/settings': '设置',
@@ -43,7 +45,8 @@ export function App() {
   let page;
   switch (route.path) {
     case '/library': page = <Library />; break;
-    case '/timer': page = <TimerPage />; break;
+    case '/timer': page = <Practice query={route.query} />; break;
+    case '/sheet': page = <SheetPage query={route.query} />; break;
     case '/scores': page = <Scores query={route.query} />; break;
     case '/notes': page = <Notes query={route.query} />; break;
     case '/settings': page = <SettingsPage />; break;

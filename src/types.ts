@@ -31,6 +31,8 @@ export type Settings = {
   examDate?: string;
   examMode: ExamMode;
   dailyHours: 6 | 3;
+  targets?: SkillTargets; // 各科目标分，默认 8 / 8 / 6.5 / 6.5（总和 29）
+  adaptive?: boolean; // 按分数调整（默认开启）
 };
 
 export type Progress = { id: string; day: number; taskKey: string; done: boolean; doneAt?: number };
@@ -84,3 +86,61 @@ export type DayPlan = {
   tasks: Task[];
   notes?: string;
 };
+
+// ---- 第二版新增：答题卡、口语录音、写作 ----
+
+export type PracticeSkill = 'listening' | 'reading';
+
+// 每套题的答案（由使用者自己录入）。一个答案可写多个可接受写法，用 / 分隔；括号内为可省略的词
+export type AnswerKey = {
+  id: string; // `${book}-${test}-${skill}`
+  book: number;
+  test: number;
+  skill: PracticeSkill;
+  answers: string[]; // 40 个
+  updatedAt: number;
+};
+
+// 一次答题卡作答（草稿或已交卷）
+export type Attempt = {
+  id: string;
+  book: number;
+  test: number;
+  skill: PracticeSkill;
+  day?: number;
+  answers: string[]; // 40 个
+  correct?: boolean[]; // 交卷后
+  raw?: number; // 交卷后答对数
+  submittedAt?: number;
+  createdAt: number;
+};
+
+export type SpeakingPart = 'P1' | 'P2' | 'P3' | 'full';
+
+export type Recording = {
+  id: string;
+  part: SpeakingPart;
+  topic?: string;
+  day?: number;
+  durationSec: number;
+  mime: string;
+  size: number;
+  note?: string;
+  createdAt: number;
+};
+
+export type Essay = {
+  id: string;
+  task: 'T1' | 'T2';
+  label?: string; // 如“剑15 Test 1 Task 2”
+  prompt: string;
+  text: string;
+  day?: number;
+  band?: number; // Claude 或老师给的分数
+  feedback?: string;
+  rewriteOf?: string;
+  createdAt: number;
+  updatedAt: number;
+};
+
+export type SkillTargets = { listening: number; reading: number; writing: number; speaking: number };

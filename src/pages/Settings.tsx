@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import { DEFAULT_SETTINGS, clearAll, exportData, importData, put, todayISO, type ExportData } from '../db';
+import { SKILLS, SKILL_NAME, targetsOf } from '../lib/adaptive';
 import type { Settings } from '../types';
 import { fmtBytes, toast, useSettings } from '../ui';
 
@@ -8,6 +9,7 @@ export function SettingsPage() {
   if (s === undefined) return <div class="empty">加载中…</div>;
   const cur: Settings = s ?? { ...DEFAULT_SETTINGS, startDate: todayISO() };
   const update = (patch: Partial<Settings>) => put('settings', { ...cur, ...patch });
+  const targets = targetsOf(cur);
 
   return (
     <>
@@ -40,6 +42,26 @@ export function SettingsPage() {
             ))}
           </div>
         </div>
+        <div class="field">
+          <span>各科目标分（总和 {SKILLS.reduce((a, k) => a + targets[k], 0)}，需 ≥ 29）</span>
+          <div class="grid2" style="grid-template-columns:repeat(4,1fr);gap:6px">
+            {SKILLS.map((k) => (
+              <label class="field">
+                <span>{SKILL_NAME[k]}</span>
+                <select value={targets[k]} onChange={(e) => update({ targets: { ...targets, [k]: Number((e.target as HTMLSelectElement).value) } })}>
+                  {Array.from({ length: 11 }, (_, i) => 4 + i * 0.5).map((b) => <option value={b}>{b.toFixed(1)}</option>)}
+                </select>
+              </label>
+            ))}
+          </div>
+        </div>
+        <label class="row">
+          <input type="checkbox" class="check" checked={cur.adaptive !== false} onChange={(e) => update({ adaptive: (e.target as HTMLInputElement).checked })} />
+          <span class="grow">
+            按分数调整
+            <div class="small muted">3 小时版里，写作和口语中离目标更远的一科每 3 天练 2 天；关闭则单双数天交替。</div>
+          </span>
+        </label>
         {!s && <button class="btn primary" onClick={() => put('settings', cur)}>保存设置</button>}
       </div>
 
@@ -51,7 +73,7 @@ export function SettingsPage() {
         <button
           class="btn danger block"
           onClick={async () => {
-            if (!confirm('清空所有数据？包括导入的文件、分数、错题、词对和进度。')) return;
+            if (!confirm('清空所有数据？包括导入的文件、录音、作文、答案、分数、错题、词对和进度。')) return;
             if (!confirm('再确认一次：清空后无法恢复。建议先导出数据。')) return;
             await clearAll();
             toast('已清空所有数据');
@@ -132,7 +154,7 @@ function Backup() {
   return (
     <div class="card stack">
       <h3>数据备份</h3>
-      <div class="small muted">导出分数、错题、词对、进度和设置为一个 JSON 文件，用于换手机或备份。不包含导入的 PDF 和音频。</div>
+      <div class="small muted">导出分数、错题、词对、进度、设置、录入的答案、答题记录和作文为一个 JSON 文件，用于换手机或备份。不包含导入的 PDF、音频和口语录音。</div>
       <div class="row">
         <button class="btn grow" onClick={doExport}>导出数据</button>
         <label class="btn grow">

@@ -1,5 +1,5 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
-import type { FileBlob, FileMeta, Mistake, Progress, Score, Settings, Synonym } from './types';
+import type { AnswerKey, Attempt, Essay, FileBlob, FileMeta, Mistake, Progress, Recording, Score, Settings, Synonym } from './types';
 
 interface Schema extends DBSchema {
   fileBlobs: { key: string; value: FileBlob };
@@ -9,16 +9,47 @@ interface Schema extends DBSchema {
   scores: { key: string; value: Score };
   mistakes: { key: string; value: Mistake; indexes: { createdAt: number; cause: string } };
   synonyms: { key: string; value: Synonym };
+  // 第 2 版
+  answerKeys: { key: string; value: AnswerKey };
+  attempts: { key: string; value: Attempt; indexes: { book_test_skill: [number, number, string] } };
+  recordings: { key: string; value: Recording };
+  recordingBlobs: { key: string; value: FileBlob };
+  essays: { key: string; value: Essay };
 }
 
-export type StoreName = 'fileBlobs' | 'files' | 'settings' | 'progress' | 'scores' | 'mistakes' | 'synonyms';
+export type StoreName =
+  | 'fileBlobs' | 'files' | 'settings' | 'progress' | 'scores' | 'mistakes' | 'synonyms'
+  | 'answerKeys' | 'attempts' | 'recordings' | 'recordingBlobs' | 'essays';
+
+const ALL_STORES: StoreName[] = [
+  'fileBlobs', 'files', 'settings', 'progress', 'scores', 'mistakes', 'synonyms',
+  'answerKeys', 'attempts', 'recordings', 'recordingBlobs', 'essays',
+];
+// 导出时包含的数据（不含文件和录音的二进制内容）
+const EXPORT_STORES = ['settings', 'progress', 'scores', 'mistakes', 'synonyms', 'answerKeys', 'attempts', 'essays'] as const;
 
 let dbPromise: Promise<IDBPDatabase<Schema>> | null = null;
 
 export function db(): Promise<IDBPDatabase<Schema>> {
   if (!dbPromise) {
-    dbPromise = openDB<Schema>('ielts-helper', 1, {
-      upgrade(d) {
+    dbPromise = openDB<Schema>('ielts-helper', 2, {
+      upgrade(d, oldVersion) {
+        if (oldVersion < 1) createV1(d);
+        if (oldVersion < 2) {
+          d.createObjectStore('answerKeys', { keyPath: 'id' });
+          const attempts = d.createObjectStore('attempts', { keyPath: 'id' });
+          attempts.createIndex('book_test_skill', ['book', 'test', 'skill']);
+          d.createObjectStore('recordings', { keyPath: 'id' });
+          d.createObjectStore('recordingBlobs', { keyPath: 'id' });
+          d.createObjectStore('essays', { keyPath: 'id' });
+        }
+      },
+    });
+  }
+  return dbPromise;
+}
+
+function createV1(d: IDBPDatabase<Schema>) {
         d.createObjectStore('fileBlobs', { keyPath: 'id' });
         const files = d.createObjectStore('files', { keyPath: 'id' });
         files.createIndex('category', 'category');
@@ -31,10 +62,6 @@ export function db(): Promise<IDBPDatabase<Schema>> {
         mistakes.createIndex('createdAt', 'createdAt');
         mistakes.createIndex('cause', 'cause');
         d.createObjectStore('synonyms', { keyPath: 'id' });
-      },
-    });
-  }
-  return dbPromise;
 }
 
 export function uid(): string {
@@ -54,7 +81,7 @@ function emit(store: StoreName) {
 }
 
 // ---- 通用读写 ----
-export async function getAll<S extends Exclude<StoreName, 'fileBlobs'>>(store: S): Promise<Schema[S]['value'][]> {
+export async function getAll<S extends Exclude<StoreName, 'fileBlobs' | 'recordingBlobs'>>(store: S): Promise<Schema[S]['value'][]> {
   return (await db()).getAll(store);
 }
 export async function put<S extends StoreName>(store: S, value: Schema[S]['value']): Promise<void> {
@@ -131,10 +158,9 @@ export async function deleteFile(id: string): Promise<void> {
 // ---- 全部清空 ----
 export async function clearAll(): Promise<void> {
   const d = await db();
-  const names: StoreName[] = ['fileBlobs', 'files', 'settings', 'progress', 'scores', 'mistakes', 'synonyms'];
-  const tx = d.transaction(names, 'readwrite');
-  await Promise.all([...names.map((n) => tx.objectStore(n).clear()), tx.done]);
-  names.forEach(emit);
+  const tx = d.transaction(ALL_STORES, 'readwrite');
+  await Promise.all([...ALL_STORES.map((n) => tx.objectStore(n).clear()), tx.done]);
+  ALL_STORES.forEach(emit);
 }
 
 // ---- 导出 / 导入（不含文件 Blob）----
@@ -147,6 +173,9 @@ export type ExportData = {
   scores: Score[];
   mistakes: Mistake[];
   synonyms: Synonym[];
+  answerKeys?: AnswerKey[];
+  attempts?: Attempt[];
+  essays?: Essay[];
 };
 
 export async function exportData(): Promise<ExportData> {
@@ -160,6 +189,9 @@ export async function exportData(): Promise<ExportData> {
     scores: await d.getAll('scores'),
     mistakes: await d.getAll('mistakes'),
     synonyms: await d.getAll('synonyms'),
+    answerKeys: await d.getAll('answerKeys'),
+    attempts: await d.getAll('attempts'),
+    essays: await d.getAll('essays'),
   };
 }
 
@@ -167,7 +199,7 @@ export async function exportData(): Promise<ExportData> {
 export async function importData(data: ExportData): Promise<number> {
   if (!data || data.app !== 'ielts-helper') throw new Error('不是本 App 导出的数据文件');
   const d = await db();
-  const names = ['settings', 'progress', 'scores', 'mistakes', 'synonyms'] as const;
+  const names = EXPORT_STORES;
   const tx = d.transaction(names, 'readwrite');
   let count = 0;
   for (const n of names) {
@@ -179,4 +211,32 @@ export async function importData(data: ExportData): Promise<number> {
   await tx.done;
   names.forEach(emit);
   return count;
+}
+
+// ---- 录音 ----
+export async function saveRecording(meta: Recording, blob: Blob): Promise<void> {
+  const d = await db();
+  await d.put('recordingBlobs', { id: meta.id, blob });
+  try {
+    await d.put('recordings', meta);
+  } catch (e) {
+    await d.delete('recordingBlobs', meta.id).catch(() => {});
+    throw e;
+  }
+  emit('recordings');
+}
+
+export async function getRecordingBlob(id: string): Promise<Blob | undefined> {
+  return (await (await db()).get('recordingBlobs', id))?.blob;
+}
+
+export async function deleteRecording(id: string): Promise<void> {
+  const d = await db();
+  const tx = d.transaction(['recordings', 'recordingBlobs'], 'readwrite');
+  await Promise.all([tx.objectStore('recordings').delete(id), tx.objectStore('recordingBlobs').delete(id), tx.done]);
+  emit('recordings');
+}
+
+export async function getOne<S extends Exclude<StoreName, 'fileBlobs' | 'recordingBlobs'>>(store: S, id: string): Promise<Schema[S]['value'] | undefined> {
+  return (await db()).get(store, id);
 }

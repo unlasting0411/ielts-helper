@@ -23,6 +23,19 @@ describe('导出 → 清空 → 导入', () => {
     expect((await getAll('settings'))[0].examMode).toBe('paper');
   });
 
+  it('round-trips answer keys, attempts and essays (v2)', async () => {
+    await clearAll();
+    await put('answerKeys', { id: '15-1-reading', book: 15, test: 1, skill: 'reading', answers: ['A', 'TRUE'], updatedAt: 1 });
+    await put('attempts', { id: 'a1', book: 15, test: 1, skill: 'reading', answers: ['A', 'F'], correct: [true, false], raw: 1, submittedAt: 2, createdAt: 2 });
+    await put('essays', { id: 'e1', task: 'T2', prompt: 'p', text: 'Some text here.', createdAt: 3, updatedAt: 3 });
+    const data = JSON.parse(JSON.stringify(await exportData()));
+    await clearAll();
+    expect(await importData(data)).toBe(3);
+    expect((await getAll('answerKeys'))[0].answers).toEqual(['A', 'TRUE']);
+    expect((await getAll('attempts'))[0].raw).toBe(1);
+    expect((await getAll('essays'))[0].text).toBe('Some text here.');
+  });
+
   it('rejects foreign files', async () => {
     await expect(importData({ foo: 1 } as never)).rejects.toThrow();
   });

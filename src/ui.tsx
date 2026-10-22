@@ -81,7 +81,7 @@ export function goHome() {
 }
 
 // ---------- 数据 hooks ----------
-export function useStore<S extends Exclude<StoreName, 'fileBlobs'>>(store: S) {
+export function useStore<S extends Exclude<StoreName, 'fileBlobs' | 'recordingBlobs'>>(store: S) {
   const [rows, setRows] = useState<Awaited<ReturnType<typeof getAll<S>>> | null>(null);
   useEffect(() => {
     let alive = true;
